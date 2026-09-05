@@ -37,3 +37,5 @@ C:\Users\Zack\CIS580\ZLGameProject\obj\Debug\net9.0\ref\ZLGameProject.dll
 C:\Users\Zack\CIS580\ZLGameProject\bin\Debug\net9.0\Content\32x32-bat-sprite.xnb
 C:\Users\Zack\CIS580\ZLGameProject\bin\Debug\net9.0\Content\colored_packed.xnb
 C:\Users\Zack\CIS580\ZLGameProject\bin\Debug\net9.0\Content\font.xnb
+C:\Users\Zack\CIS580\ZLGameProject\obj\Debug\net9.0\ZLGameProject.sourcelink.json
+C:\Users\Zack\CIS580\ZLGameProject\bin\Debug\net9.0\Content\title.xnb

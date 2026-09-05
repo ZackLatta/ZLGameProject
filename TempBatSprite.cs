@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using System.Runtime.CompilerServices;
+using System.Linq.Expressions;
 
 namespace ZLGameProject;
 
@@ -26,14 +28,14 @@ public class TempBatSprite
 
     private Texture2D texture;
 
-    private Vector2 position = new Vector2(200, 200);
-
     private double animationTimer;
+
+    private bool _flyUp;
 
     /// <summary>
     /// adjusts the speed of the animation when moving
     /// </summary>
-    private double animationSpeed = 0.3;
+    private double animationSpeed = 0.15;
 
     /// <summary>
     /// what animation frame is being shown
@@ -46,9 +48,28 @@ public class TempBatSprite
     public Direction Direction;
 
     /// <summary>
+    /// marks the center of the screen
+    /// </summary>
+    private float _screenCenter;
+
+    private bool _loop;
+
+
+    /// <summary>
+    /// bat's starting position
+    /// </summary>
+    private Vector2 _initialPosition;
+    /// <summary>
     /// position of the bat
     /// </summary>
-    public Vector2 Position = new Vector2(200,200);
+    public Vector2 Position;
+
+    public TempBatSprite(Vector2 v, float s)
+    {
+        _screenCenter = s;
+        _initialPosition = v;
+        Position = v;
+    }
 
     /// <summary>
     /// loads the bat sprite texture
@@ -67,42 +88,68 @@ public class TempBatSprite
     {
         keyboardState = Keyboard.GetState();
 
-        if(animationFrame != 0)
+        if(animationFrame == 0) return;
+
+        if (!_loop)
         {
-            if(keyboardState.IsKeyDown(Keys.W))
+            Direction = Direction.Right;
+            Position += new Vector2(3,0);
+            
+            ///if bat is past the center, loops around
+            if(Position.X == _screenCenter + 130)
             {
+                _loop = true;
                 Direction = Direction.Up;
-                Position += new Vector2(0,-2);
-                animationSpeed = 0.15;
-            }
-            if(keyboardState.IsKeyDown(Keys.A))
-            {
-                Direction = Direction.Left;
-                Position += new Vector2(-2,0);
-                animationSpeed = 0.15;
-            }
-            if(keyboardState.IsKeyDown(Keys.S))
-            {
-                Direction = Direction.Down;
-                Position += new Vector2(0,2);
-                animationSpeed = 0.15;
-            }
-            if(keyboardState.IsKeyDown(Keys.D))
-            {
-                Direction = Direction.Right;
-                Position += new Vector2(2,0);
-                animationSpeed = 0.15;
-            }
-            //Kills bat and prevents any more input from being read
-            if (keyboardState.IsKeyDown(Keys.K))
-            {
-                animationFrame = 0;
-            }
-            if(keyboardState.GetPressedKeyCount() == 0)
-            {
-                animationSpeed = 0.3;
             }
         }
+        else
+        {
+            switch (Direction)
+            {
+                case Direction.Up:
+                    Position += new Vector2(0,-3);
+                    if(Position.Y <= _initialPosition.Y - 105)
+                    {
+                        Direction = Direction.Left;
+                    }
+                    break;
+                case Direction.Left:
+                    Position += new Vector2(-3,0);
+                    if(Position.X <= _screenCenter - 125)
+                    {
+                        Direction = Direction.Down;
+                    }
+                    break;
+                case Direction.Down:
+                    Position += new Vector2(0,3);
+                    if(Position.Y >= _initialPosition.Y)
+                    {
+                        Direction = Direction.Right;
+                    }
+                    break;
+                case Direction.Right:
+                    Position += new Vector2(3,0);
+                    if(Position.X >= _screenCenter + 135)
+                    {
+                        _loop = false;
+                    }
+                    break;
+            }
+        }
+        
+        
+        //bat flies until it is offscreen, then gets teleported back to the starting position
+        if(Position.X >= _screenCenter * 2 + 50)
+        {
+            Position = _initialPosition;
+        }
+        //Kills bat and prevents any more animation or movement
+        if (keyboardState.IsKeyDown(Keys.K))
+        {
+            animationFrame = 0;
+        }
+
+        
             
     }
 

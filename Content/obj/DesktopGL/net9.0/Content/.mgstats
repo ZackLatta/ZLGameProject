@@ -2,3 +2,4 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "C:/Users/Zack/CIS580/ZLGameProject/Content/32x32-bat-sprite.png","C:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/32x32-bat-sprite.xnb","TextureProcessor","Texture2DContent",2628,65621,0.195017
 "C:/Users/Zack/CIS580/ZLGameProject/Content/colored_packed.png","C:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/colored_packed.xnb","TextureProcessor","Texture2DContent",23076,1081429,0.1792849
 "C:/Users/Zack/CIS580/ZLGameProject/Content/font.spritefont","C:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/font.xnb","FontDescriptionProcessor","SpriteFontContent",2063,21529,0.2273718
+"C:/Users/Zack/CIS580/ZLGameProject/Content/title.spritefont","C:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/title.xnb","FontDescriptionProcessor","SpriteFontContent",2063,70681,0.3442626
