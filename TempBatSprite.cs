@@ -30,8 +30,6 @@ public class TempBatSprite
 
     private double animationTimer;
 
-    private bool _flyUp;
-
     /// <summary>
     /// adjusts the speed of the animation when moving
     /// </summary>
@@ -84,7 +82,7 @@ public class TempBatSprite
     /// Updates the bat sprite to move
     /// </summary>
     /// <param name="gameTime">the game time</param>
-    public void Update(GameTime gameTime)
+    public void Update()
     {
         keyboardState = Keyboard.GetState();
 

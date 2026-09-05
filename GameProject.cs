@@ -23,8 +23,6 @@ public class GameProject : Game
 
     private TitleScreenText _title;
 
-    public MathHelper.Random Random {get; init;} = new();
-
     public GameProject()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -64,7 +62,7 @@ public class GameProject : Game
         {
             _isDead = true;
         }
-        _bat.Update(gameTime);
+        _bat.Update();
         _title.Update(gameTime);
         base.Update(gameTime);
     }
