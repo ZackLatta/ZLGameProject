@@ -94,7 +94,7 @@ public class TempBatSprite
             Position += new Vector2(3,0);
             
             ///if bat is past the center, loops around
-            if(Position.X == _screenCenter + 130)
+            if(Position.X == _screenCenter + 114)
             {
                 _loop = true;
                 Direction = Direction.Up;

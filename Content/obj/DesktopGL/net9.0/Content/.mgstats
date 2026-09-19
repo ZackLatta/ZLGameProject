@@ -1,5 +1,8 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/Zack/CIS580/ZLGameProject/Content/32x32-bat-sprite.png","C:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/32x32-bat-sprite.xnb","TextureProcessor","Texture2DContent",2628,65621,0.195017
-"C:/Users/Zack/CIS580/ZLGameProject/Content/colored_packed.png","C:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/colored_packed.xnb","TextureProcessor","Texture2DContent",23076,1081429,0.1792849
-"C:/Users/Zack/CIS580/ZLGameProject/Content/font.spritefont","C:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/font.xnb","FontDescriptionProcessor","SpriteFontContent",2063,21529,0.2273718
-"C:/Users/Zack/CIS580/ZLGameProject/Content/title.spritefont","C:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/title.xnb","FontDescriptionProcessor","SpriteFontContent",2063,70681,0.3442626
+"c:/Users/Zack/CIS580/ZLGameProject/Content/32x32-bat-sprite.png","c:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/32x32-bat-sprite.xnb","TextureProcessor","Texture2DContent",2628,65621,0.339025
+"c:/Users/Zack/CIS580/ZLGameProject/Content/Ball.png","c:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/Ball.xnb","TextureProcessor","Texture2DContent",681,16469,0.1692926
+"c:/Users/Zack/CIS580/ZLGameProject/Content/Bob.png","c:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/Bob.xnb","TextureProcessor","Texture2DContent",3078,65621,0.1917945
+"c:/Users/Zack/CIS580/ZLGameProject/Content/colored_packed.png","c:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/colored_packed.xnb","TextureProcessor","Texture2DContent",23076,1081429,0.0391057
+"c:/Users/Zack/CIS580/ZLGameProject/Content/font.spritefont","c:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/font.xnb","FontDescriptionProcessor","SpriteFontContent",2063,21529,0.1782096
+"c:/Users/Zack/CIS580/ZLGameProject/Content/PlayerSoul.png","c:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/PlayerSoul.xnb","TextureProcessor","Texture2DContent",6657,82005,0.0136235
+"c:/Users/Zack/CIS580/ZLGameProject/Content/title.spritefont","c:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/title.xnb","FontDescriptionProcessor","SpriteFontContent",2063,70681,0.0378194

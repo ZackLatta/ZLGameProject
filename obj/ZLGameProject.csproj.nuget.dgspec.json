@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Zack\\CIS580\\ZLGameProject\\ZLGameProject.csproj": {}
+    "c:\\Users\\Zack\\CIS580\\ZLGameProject\\ZLGameProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Zack\\CIS580\\ZLGameProject\\ZLGameProject.csproj": {
+    "c:\\Users\\Zack\\CIS580\\ZLGameProject\\ZLGameProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Zack\\CIS580\\ZLGameProject\\ZLGameProject.csproj",
+        "projectUniqueName": "c:\\Users\\Zack\\CIS580\\ZLGameProject\\ZLGameProject.csproj",
         "projectName": "ZLGameProject",
-        "projectPath": "C:\\Users\\Zack\\CIS580\\ZLGameProject\\ZLGameProject.csproj",
+        "projectPath": "c:\\Users\\Zack\\CIS580\\ZLGameProject\\ZLGameProject.csproj",
         "packagesPath": "C:\\Users\\Zack\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Zack\\CIS580\\ZLGameProject\\obj\\",
+        "outputPath": "c:\\Users\\Zack\\CIS580\\ZLGameProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

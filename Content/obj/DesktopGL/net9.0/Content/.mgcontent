@@ -4,12 +4,18 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Zack/CIS580/ZLGameProject/Content/32x32-bat-sprite.png</File>
-    <File>C:/Users/Zack/CIS580/ZLGameProject/Content/colored_packed.png</File>
-    <File>C:/Users/Zack/CIS580/ZLGameProject/Content/font.spritefont</File>
-    <File>C:/Users/Zack/CIS580/ZLGameProject/Content/title.spritefont</File>
+    <File>c:/Users/Zack/CIS580/ZLGameProject/Content/32x32-bat-sprite.png</File>
+    <File>c:/Users/Zack/CIS580/ZLGameProject/Content/Ball.png</File>
+    <File>c:/Users/Zack/CIS580/ZLGameProject/Content/Bob.png</File>
+    <File>c:/Users/Zack/CIS580/ZLGameProject/Content/colored_packed.png</File>
+    <File>c:/Users/Zack/CIS580/ZLGameProject/Content/font.spritefont</File>
+    <File>c:/Users/Zack/CIS580/ZLGameProject/Content/PlayerSoul.png</File>
+    <File>c:/Users/Zack/CIS580/ZLGameProject/Content/title.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
