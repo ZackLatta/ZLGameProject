@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZLGameProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a592b156429c40146541151562700b31018b5ca3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f7a9a546ef302207c3f02c55cb5f7198f37c1ca7")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZLGameProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZLGameProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

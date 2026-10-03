@@ -22,7 +22,7 @@ public class BobAttack: Attack
         System.Random rand = new System.Random();
         for(int i = 0; i < 5; i++)
         {
-            Bullets.Add(new Bullet(new Vector2(rand.Next(450,750), rand.Next(350, 650)), rand.Next(3,7), rand.Next(3,7),(float)rand.NextDouble() * 3)) ;
+            Bullets.Add(new Bullet(new Vector2(rand.Next(500,700), rand.Next(400, 600)), rand.Next(3,7), rand.Next(3,7),(float)rand.NextDouble() * 1.5f)) ;
         }
     }
 
@@ -47,7 +47,7 @@ public class BobAttack: Attack
             Bullets[i].CollideWithBoundingBox(b);
         }
 
-        if(_attackTime >= 20)
+        if(_attackTime >= 30)
         {
             IsDone = true;
             addBall = 0;
@@ -65,6 +65,15 @@ public class BobAttack: Attack
             {
                 p.Health -= 5;
                 p.Invunerable = true;
+                if(p.Health <= 0)
+                {
+                    p.death.Play();
+                }
+                else
+                {
+                    p.hit.Play();
+                }
+
             }
         }
         

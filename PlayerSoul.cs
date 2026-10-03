@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using System.IO;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Audio;
 
 
 namespace ZLGameProject;
@@ -44,6 +45,10 @@ public class PlayerSoul
 
     private Sprite _sprite = Sprite.Zero;
 
+    public SoundEffect hit;
+
+    public SoundEffect death;
+
     /// <summary>
     /// adjusts the speed of the animation
     /// </summary>
@@ -71,6 +76,9 @@ public class PlayerSoul
     public void LoadContent(ContentManager content)
     {
         _texture = content.Load<Texture2D>("PlayerSoul");
+        hit = content.Load<SoundEffect>("Hit");
+        death = content.Load<SoundEffect>("Temp_Death");
+
     }
 
    

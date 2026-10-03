@@ -42,3 +42,11 @@ C:\Users\Zack\CIS580\ZLGameProject\bin\Debug\net9.0\Content\title.xnb
 c:\Users\Zack\CIS580\ZLGameProject\bin\Debug\net9.0\Content\Bob.xnb
 c:\Users\Zack\CIS580\ZLGameProject\bin\Debug\net9.0\Content\PlayerSoul.xnb
 c:\Users\Zack\CIS580\ZLGameProject\bin\Debug\net9.0\Content\Ball.xnb
+c:\Users\Zack\CIS580\ZLGameProject\bin\Debug\net9.0\Content\Bullet_Bounce.xnb
+c:\Users\Zack\CIS580\ZLGameProject\bin\Debug\net9.0\Content\Hit.xnb
+c:\Users\Zack\CIS580\ZLGameProject\bin\Debug\net9.0\Content\Nicolaas Stulting - Revenge.ogg
+c:\Users\Zack\CIS580\ZLGameProject\bin\Debug\net9.0\Content\Nicolaas Stulting - Revenge.xnb
+c:\Users\Zack\CIS580\ZLGameProject\bin\Debug\net9.0\Content\Rhapsody - The Death of Privacy.ogg
+c:\Users\Zack\CIS580\ZLGameProject\bin\Debug\net9.0\Content\Rhapsody - The Death of Privacy.xnb
+c:\Users\Zack\CIS580\ZLGameProject\bin\Debug\net9.0\Content\Select.xnb
+c:\Users\Zack\CIS580\ZLGameProject\bin\Debug\net9.0\Content\Temp_Death.xnb

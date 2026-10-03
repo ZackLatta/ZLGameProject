@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using System.IO;
 using System.Runtime.CompilerServices;
+using Microsoft.Xna.Framework.Audio;
 
 
 namespace ZLGameProject;
@@ -19,6 +20,8 @@ public class Bullet
 
     private Vector2 _velocityX;
     private Vector2 _velocityY;
+
+    private SoundEffect _bounce;
 
     private float _scale;
 
@@ -36,6 +39,7 @@ public class Bullet
     public void LoadContent(ContentManager content)
     {
         _texture = content.Load<Texture2D>("Ball");
+        _bounce = content.Load<SoundEffect>("Bullet_Bounce");
     }
 
 
@@ -62,6 +66,7 @@ public class Bullet
         if(Math.Pow(Radius, 2) >= Math.Pow(Position.X - nearestX, 2) + Math.Pow(Position.Y - nearestY, 2))
         {
             _velocityX *= -1; 
+            _bounce.Play();
         }
 
         nearestX = MathHelper.Clamp(Position.X, b.Right.X, b.Right.X + b.Right.Width);
@@ -71,6 +76,7 @@ public class Bullet
         if(Math.Pow(Radius, 2) >= Math.Pow(Position.X - nearestX, 2) + Math.Pow(Position.Y - nearestY, 2))
         {
             _velocityX *= -1; 
+            _bounce.Play();
         }
 
         nearestX = MathHelper.Clamp(Position.X, b.Top.X, b.Top.X + b.Top.Width);
@@ -79,7 +85,8 @@ public class Bullet
          
         if(Math.Pow(Radius, 2) >= Math.Pow(Position.X - nearestX, 2) + Math.Pow(Position.Y - nearestY, 2))
         {
-            _velocityY *= -1; 
+            _velocityY *= -1;
+            _bounce.Play();
         }
 
         nearestX = MathHelper.Clamp(Position.X, b.Bottom.X, b.Bottom.X + b.Bottom.Width);
@@ -88,7 +95,8 @@ public class Bullet
         
         if(Math.Pow(Radius, 2) >= Math.Pow(Position.X - nearestX, 2) + Math.Pow(Position.Y - nearestY, 2))
         {
-            _velocityY *= -1;  
+            _velocityY *= -1;
+            _bounce.Play();  
         }
   
     }

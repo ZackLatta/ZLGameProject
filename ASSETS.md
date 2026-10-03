@@ -7,3 +7,13 @@ Content/Ball.png - created by Zack Latta
 Content/Bob.png - created by Zack Latta
 
 Content/PlayerSoul.png - created by Zack Latta
+
+Content/Hit.Wav - created by Zack Latta using BXFR
+
+Content/Select.Wav - created by Zack Latta using BXFR
+
+Content/Temp_Death.Wave - created by Zack Latta using BXFR
+
+Content/Rhapsody - The Death Of Privacy.mp3 - created by Rhapsody, released under CC0/Public Domain
+
+Content/Nicolaas Stulting - Revenge.mp3 - created by Nicolaas Stuting (https://freemusicarchive.org/search?adv=1&quicksearch=Nicolaas%20Stulting&&), released under CC-BY

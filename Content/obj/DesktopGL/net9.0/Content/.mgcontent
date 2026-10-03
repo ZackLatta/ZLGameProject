@@ -7,12 +7,24 @@
     <File>c:/Users/Zack/CIS580/ZLGameProject/Content/32x32-bat-sprite.png</File>
     <File>c:/Users/Zack/CIS580/ZLGameProject/Content/Ball.png</File>
     <File>c:/Users/Zack/CIS580/ZLGameProject/Content/Bob.png</File>
+    <File>c:/Users/Zack/CIS580/ZLGameProject/Content/Bullet_Bounce.wav</File>
     <File>c:/Users/Zack/CIS580/ZLGameProject/Content/colored_packed.png</File>
     <File>c:/Users/Zack/CIS580/ZLGameProject/Content/font.spritefont</File>
+    <File>c:/Users/Zack/CIS580/ZLGameProject/Content/Hit.wav</File>
+    <File>c:/Users/Zack/CIS580/ZLGameProject/Content/Nicolaas Stulting - Revenge.mp3</File>
     <File>c:/Users/Zack/CIS580/ZLGameProject/Content/PlayerSoul.png</File>
+    <File>c:/Users/Zack/CIS580/ZLGameProject/Content/Rhapsody - The Death of Privacy.mp3</File>
+    <File>c:/Users/Zack/CIS580/ZLGameProject/Content/Select.wav</File>
+    <File>c:/Users/Zack/CIS580/ZLGameProject/Content/Temp_Death.wav</File>
     <File>c:/Users/Zack/CIS580/ZLGameProject/Content/title.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

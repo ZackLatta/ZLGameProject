@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 
 namespace ZLGameProject;
@@ -30,6 +31,12 @@ public class GameProject : Game
     private TitleScreenText _title;
 
     private BoundingBox _box;
+
+    private Song _titleSong;
+
+    private Song _battleSong;
+
+    private Song _currentSong;
 
 
     public GameProject()
@@ -69,6 +76,11 @@ public class GameProject : Game
         _player.LoadContent(Content);
         _box.LoadContent(GraphicsDevice, _spriteBatch);
         _bob.LoadContent(Content);
+        _titleSong = Content.Load<Song>("Nicolaas Stulting - Revenge");
+        _battleSong = Content.Load<Song>("Rhapsody - The Death of Privacy");
+        _currentSong = _titleSong;
+        MediaPlayer.Play(_currentSong);
+        MediaPlayer.IsRepeating = true;
     }
 
     protected override void Update(GameTime gameTime)
@@ -82,14 +94,23 @@ public class GameProject : Game
         if (_keyboardState.IsKeyDown(Keys.Space))
         {
             _showTitle = false;
-            Console.WriteLine("Space Pressed");
         }
 
         if (!_showTitle)
-        {   
+        {
+ 
             
             if (!_player.IsDead)
             {
+                //Changes the song when the screens change
+                if(_currentSong != _battleSong)
+                {
+                    //lowers song volume so the other sound effects can be heard
+                    MediaPlayer.Volume = 0.35f;
+                    _currentSong = _battleSong;
+                    MediaPlayer.Play(_currentSong);
+                }
+
                 _bob.Update(gameTime, _box);
                 _player.Update(gameTime);
                 _player.CollideWithBoundingBox(_box);
@@ -97,13 +118,26 @@ public class GameProject : Game
                 {
                     _bob.Attack1.CollideWithBullet(_player);
                 }
+                else
+                {
+                    MediaPlayer.Stop();
+                }
                 
+            }
+            else
+            {
+                MediaPlayer.Stop();
             }
             
         }
         else
         {
-            
+            //Changes song if the screen changes
+            if(_currentSong != _titleSong)
+            {
+                _currentSong = _titleSong;
+                MediaPlayer.Play(_currentSong);
+            }
             _bat.Update();
             _title.Update(gameTime); 
         }
