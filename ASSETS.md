@@ -12,6 +12,8 @@ Content/Hit.Wav - created by Zack Latta using BXFR
 
 Content/Select.Wav - created by Zack Latta using BXFR
 
+Content/Bullet_Bounce.Wav- Created by Zack Latta using BXFR
+
 Content/Temp_Death.Wave - created by Zack Latta using BXFR
 
 Content/Rhapsody - The Death Of Privacy.mp3 - created by Rhapsody, released under CC0/Public Domain
