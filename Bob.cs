@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using System.Runtime.CompilerServices;
 using System.Linq.Expressions;
 using System.Text.Json;
+using System.Reflection.Metadata;
 
 
 namespace ZLGameProject;
@@ -20,6 +21,15 @@ public class Bob : IEnemy
     /// what animation frame is being shown
     /// </summary>
     private short animationFrame = 0;
+
+    private float _rotation = 0;
+
+    private const float _ROTATION_AMOUNT = 0.05f;
+
+    private float _rotationDirection = 1;
+
+    private float _rotationTimer = 0;
+
 
     /// <summary>
     /// position of the enemy
@@ -39,6 +49,11 @@ public class Bob : IEnemy
     {
         Attack1 = new();
         _position = new Vector2(center, 200);
+    }
+
+    public void Initialize(Game game, BoundingBox b, PlayerSoul p)
+    {
+        Attack1.Initialize(game,b, p);
     }
 
     //Loads the required content for the enemy
@@ -103,11 +118,30 @@ public class Bob : IEnemy
     {
         var source = new Rectangle(animationFrame * 64, 0, 64, 64);
         
-        spriteBatch.Draw(_texture, _position, source, Color.White, 0, new Vector2(32,32), 3f, SpriteEffects.None, 0);
+        _rotationTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+        if(_rotationTimer >= 0.1f)
+        {
+            _rotation += _ROTATION_AMOUNT * _rotationDirection;
+                if(_rotation >= 0.25f || _rotation <= -0.25f)
+            {
+                _rotationDirection *= -1;
+            }
+            _rotationTimer = 0;
+        }
+        
+        
+
+
+        
         if (Turn)
         {
-           Attack1.Draw(spriteBatch); 
+            spriteBatch.Draw(_texture, _position, source, Color.White, _rotation, new Vector2(32,32), 3f,SpriteEffects.None, 0);
+            Attack1.Draw(spriteBatch); 
+        }
+        else
+        {
+            spriteBatch.Draw(_texture, _position, source, Color.White, 0, new Vector2(32,32), 3f,SpriteEffects.None, 0);
         }
         
     }

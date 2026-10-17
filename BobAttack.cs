@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
+using System.ComponentModel;
 
 namespace ZLGameProject;
 
@@ -16,6 +17,14 @@ public class BobAttack: Attack
 
     private int _ballCount = 0;
 
+    private Bullet emitter;
+
+    private bool _attackPhase1 = true;
+
+    public bool AttackPhase1 {get => _attackPhase1;}
+
+    private BulletParticleSystem bps;
+
     public BobAttack()
     {
         Bullets = new List<Bullet>();
@@ -24,6 +33,19 @@ public class BobAttack: Attack
         {
             Bullets.Add(new Bullet(new Vector2(rand.Next(500,700), rand.Next(400, 600)), rand.Next(3,7), rand.Next(3,7),(float)rand.NextDouble() * 1.5f)) ;
         }
+        emitter = new Bullet(new Vector2(500, 350), 2, 0, 0.5f);
+    }
+
+    public void Initialize(Game game, BoundingBox b, PlayerSoul p)
+    {
+        bps = new BulletParticleSystem(game, emitter, b, p);
+        game.Components.Add(bps);
+    }
+
+    public override void LoadContent(ContentManager content)
+    {
+        emitter.LoadContent(content);
+        base.LoadContent(content);
     }
 
     /// <summary>
@@ -35,24 +57,48 @@ public class BobAttack: Attack
         addBall += gameTime.ElapsedGameTime.TotalSeconds;
         _attackTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-        if(addBall >= 2 && _ballCount < 5)
+        if(_attackPhase1 == true)
         {
-            _ballCount++;
-            addBall = 0;
-        }
+            if(addBall >= 2 && _ballCount < 5)
+            {
+                _ballCount++;
+                addBall = 0;
+            }
 
-        for(int i = 0; i < _ballCount; i++)
-        {
-            Bullets[i].Update();
-            Bullets[i].CollideWithBoundingBox(b);
-        }
+            for(int i = 0; i < _ballCount; i++)
+            {
+                Bullets[i].Update();
+                Bullets[i].CollideWithBoundingBox(b);
+            }
 
-        if(_attackTime >= 30)
-        {
-            IsDone = true;
-            addBall = 0;
-            _attackTime = 0;
+            if(_attackTime >= 10)
+            {
+                addBall = 0;
+                _attackTime = 0;
+                _attackPhase1 = false;
+                
+                //gets the bullets out of the bounding box
+                foreach(var x in Bullets)
+                {
+                    x.Position = new Vector2(0,0);
+                    x.Velocity = new Vector2(0,0);
+                }
+            }
         }
+        else
+        {
+            emitter.Update();
+            bps.Update(gameTime);
+            emitter.CollideWithBoundingBox(b);
+
+            if(_attackTime >= 20)
+            {
+                IsDone = true;
+                addBall = 0;
+                _attackTime = 0;
+            }
+        }
+        
 
  
     }
@@ -67,11 +113,11 @@ public class BobAttack: Attack
                 p.Invunerable = true;
                 if(p.Health <= 0)
                 {
-                    p.death.Play();
+                    //p.death.Play();
                 }
                 else
                 {
-                    p.hit.Play();
+                    //p.hit.Play();
                 }
 
             }
@@ -88,10 +134,15 @@ public class BobAttack: Attack
     /// <param name="spriteBatch">the spriteBatch to draw with</param>
     public void Draw(SpriteBatch spriteBatch)
     {
-        for(int i = 0; i < _ballCount; i++)
+        if(_attackPhase1 == true)
         {
-            Bullets[i].Draw(spriteBatch);
+            for(int i = 0; i < _ballCount; i++)
+            {
+                Bullets[i].Draw(spriteBatch);
+            }
         }
+            emitter.Draw(spriteBatch);
+        
     }
 
 }

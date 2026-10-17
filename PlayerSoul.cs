@@ -45,9 +45,9 @@ public class PlayerSoul
 
     private Sprite _sprite = Sprite.Zero;
 
-    public SoundEffect hit;
+    //public SoundEffect hit;
 
-    public SoundEffect death;
+    //public SoundEffect death;
 
     /// <summary>
     /// adjusts the speed of the animation
@@ -76,8 +76,8 @@ public class PlayerSoul
     public void LoadContent(ContentManager content)
     {
         _texture = content.Load<Texture2D>("PlayerSoul");
-        hit = content.Load<SoundEffect>("Hit");
-        death = content.Load<SoundEffect>("Temp_Death");
+        //hit = content.Load<SoundEffect>("Hit");
+        //death = content.Load<SoundEffect>("Temp_Death");
 
     }
 

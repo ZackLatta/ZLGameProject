@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 
 namespace ZLGameProject;
@@ -32,11 +33,17 @@ public class GameProject : Game
 
     private BoundingBox _box;
 
-    private Song _titleSong;
+    //private Song _titleSong;
 
-    private Song _battleSong;
+    //private Song _battleSong;
 
-    private Song _currentSong;
+    //private Song _currentSong;
+
+    private int _translationDirection = 1;
+
+    private float _currentTranslation = 0;
+
+    private const float _translationAmount = 10;
 
 
     public GameProject()
@@ -61,6 +68,7 @@ public class GameProject : Game
         _player = new PlayerSoul(new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight * 0.5f));
         _box = new BoundingBox(_graphics);
         _bob = new Bob(_graphics.PreferredBackBufferWidth / 2);
+        _bob.Initialize(this, _box, _player);
         base.Initialize();
     }
 
@@ -76,10 +84,10 @@ public class GameProject : Game
         _player.LoadContent(Content);
         _box.LoadContent(GraphicsDevice, _spriteBatch);
         _bob.LoadContent(Content);
-        _titleSong = Content.Load<Song>("Nicolaas Stulting - Revenge");
-        _battleSong = Content.Load<Song>("Rhapsody - The Death of Privacy");
-        _currentSong = _titleSong;
-        MediaPlayer.Play(_currentSong);
+        //_titleSong = Content.Load<Song>("Nicolaas Stulting - Revenge");
+        //_battleSong = Content.Load<Song>("Rhapsody - The Death of Privacy");
+        //_currentSong = _titleSong;
+        //MediaPlayer.Play(_currentSong);
         MediaPlayer.IsRepeating = true;
     }
 
@@ -103,6 +111,7 @@ public class GameProject : Game
             if (!_player.IsDead)
             {
                 //Changes the song when the screens change
+                /* Currently does not work for some reason
                 if(_currentSong != _battleSong)
                 {
                     //lowers song volume so the other sound effects can be heard
@@ -110,12 +119,14 @@ public class GameProject : Game
                     _currentSong = _battleSong;
                     MediaPlayer.Play(_currentSong);
                 }
-
+                */
+                
                 _bob.Update(gameTime, _box);
                 _player.Update(gameTime);
-                _player.CollideWithBoundingBox(_box);
+                    
                 if (_bob.Turn)
                 {
+                    _player.CollideWithBoundingBox(_box);
                     _bob.Attack1.CollideWithBullet(_player);
                 }
                 else
@@ -133,11 +144,13 @@ public class GameProject : Game
         else
         {
             //Changes song if the screen changes
+            /*No audio works for some reason
             if(_currentSong != _titleSong)
             {
                 _currentSong = _titleSong;
                 MediaPlayer.Play(_currentSong);
             }
+            */
             _bat.Update();
             _title.Update(gameTime); 
         }
@@ -152,7 +165,25 @@ public class GameProject : Game
         GraphicsDevice.Clear(Color.Black);
 
         // TODO: Add your drawing code here
-        _spriteBatch.Begin();
+
+        if(_bob.Attack1.AttackPhase1 == false)
+        {
+            _currentTranslation += _translationAmount * _translationDirection;
+            if(_currentTranslation >= 300 || _currentTranslation <= -300)
+            {
+                _translationDirection *= -1;
+            }
+            
+        }
+
+        Matrix transform;
+        transform = Matrix.CreateTranslation(_currentTranslation , 0, 0);
+        if(_bob.Attack1.IsDone == true)
+        {
+            transform = Matrix.CreateTranslation(0 , 0, 0);
+        }
+        _spriteBatch.Begin(transformMatrix: transform);
+        
         
         if(_showTitle == true)
         {

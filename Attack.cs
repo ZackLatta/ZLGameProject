@@ -20,7 +20,7 @@ public abstract class Attack
     /// loads the bullets
     /// </summary>
     /// <param name="content">content manager to load with</param>
-    public void LoadContent(ContentManager content)
+    public virtual void LoadContent(ContentManager content)
     {
         foreach(var b in Bullets)
         {

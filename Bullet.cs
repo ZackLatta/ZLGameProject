@@ -10,18 +10,33 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace ZLGameProject;
 
-public class Bullet
+public class Bullet : IParticleEmitter
 {
     public Vector2 Center = new Vector2(32,32);
     
-    public Vector2 Position;
+    private Vector2 _position;
+    public Vector2 Position
+    {
+        get => _position;
+        set => _position = value;
+    }
 
     private Texture2D _texture;
 
+   
     private Vector2 _velocityX;
     private Vector2 _velocityY;
+    public Vector2 Velocity
+    {
+        get => new Vector2(_velocityX.X, _velocityY.Y);
+        set
+        {
+            _velocityX = new Vector2(value.X, 0);
+            _velocityY = new Vector2(0, value.Y);
+        } 
+    }
 
-    private SoundEffect _bounce;
+    //private SoundEffect _bounce;
 
     private float _scale;
 
@@ -29,7 +44,7 @@ public class Bullet
 
     public Bullet(Vector2 p, float vX, float vY, float s)
     {
-        Position = p;
+        _position = p;
         _velocityX = new Vector2(vX, 0);
         _velocityY = new Vector2(0, vY);
         _scale = s;
@@ -39,14 +54,14 @@ public class Bullet
     public void LoadContent(ContentManager content)
     {
         _texture = content.Load<Texture2D>("Ball");
-        _bounce = content.Load<SoundEffect>("Bullet_Bounce");
+        //_bounce = content.Load<SoundEffect>("Bullet_Bounce");
     }
 
 
     public void Update()
     {
-        Position += _velocityX;
-        Position += _velocityY;
+        _position += _velocityX;
+        _position += _velocityY;
 
     }
 
@@ -66,7 +81,7 @@ public class Bullet
         if(Math.Pow(Radius, 2) >= Math.Pow(Position.X - nearestX, 2) + Math.Pow(Position.Y - nearestY, 2))
         {
             _velocityX *= -1; 
-            _bounce.Play();
+            //_bounce.Play();
         }
 
         nearestX = MathHelper.Clamp(Position.X, b.Right.X, b.Right.X + b.Right.Width);
@@ -76,7 +91,7 @@ public class Bullet
         if(Math.Pow(Radius, 2) >= Math.Pow(Position.X - nearestX, 2) + Math.Pow(Position.Y - nearestY, 2))
         {
             _velocityX *= -1; 
-            _bounce.Play();
+            //_bounce.Play();
         }
 
         nearestX = MathHelper.Clamp(Position.X, b.Top.X, b.Top.X + b.Top.Width);
@@ -86,7 +101,7 @@ public class Bullet
         if(Math.Pow(Radius, 2) >= Math.Pow(Position.X - nearestX, 2) + Math.Pow(Position.Y - nearestY, 2))
         {
             _velocityY *= -1;
-            _bounce.Play();
+            //_bounce.Play();
         }
 
         nearestX = MathHelper.Clamp(Position.X, b.Bottom.X, b.Bottom.X + b.Bottom.Width);
@@ -96,7 +111,7 @@ public class Bullet
         if(Math.Pow(Radius, 2) >= Math.Pow(Position.X - nearestX, 2) + Math.Pow(Position.Y - nearestY, 2))
         {
             _velocityY *= -1;
-            _bounce.Play();  
+            //_bounce.Play();  
         }
   
     }
