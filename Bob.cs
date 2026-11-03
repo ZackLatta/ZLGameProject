@@ -48,7 +48,7 @@ public class Bob : IEnemy
     public Bob(float center)
     {
         Attack1 = new();
-        _position = new Vector2(center, 200);
+        _position = new Vector2(center, 150);
     }
 
     public void Initialize(Game game, BoundingBox b, PlayerSoul p)

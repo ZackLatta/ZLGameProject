@@ -31,7 +31,7 @@ public class TitleScreenText
 
     public TitleScreenText(Vector2 center)
     {
-        _initialPosition = center;
+        _initialPosition = new Vector2(center.X * 1.25f, center.Y * .25f);
         Position = _initialPosition;
     }
 
@@ -75,7 +75,7 @@ public class TitleScreenText
     /// <param name="spriteBatch">the spriteBatch to draw with</param>
     public void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.DrawString(_font, $"GAME PROJECT", Position, Color.White);
+        spriteBatch.DrawString(_font, $"Tomb of the Lich", Position, Color.White);
     }
 }
 

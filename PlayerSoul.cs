@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework.Content;
 using System.IO;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Audio;
+using System.Dynamic;
+using System.Text.Json.Serialization;
 
 
 namespace ZLGameProject;
@@ -25,10 +27,14 @@ public class PlayerSoul
 
     private Texture2D _texture;
 
+    [JsonIgnore]
     public Vector2 Center = new Vector2(32,32);
-    public bool IsDead = false;
 
-    public bool Invunerable = false;
+    [JsonIgnore]
+    public bool IsDead {get; set;} = false;
+
+    [JsonIgnore]
+    public bool Invunerable {get; set;} = false;
 
     private float _iTimer = 0;
 
@@ -36,12 +42,13 @@ public class PlayerSoul
     /// <summary>
     /// position of the soul
     /// </summary>
-    public Vector2 Position;
+    public Vector2 Position {get; set;}
 
+    [JsonIgnore]
     /// <summary>
     /// health of the soul
     /// </summary>
-    public int Health = 30;
+    public int Health {get; set;} = 30;
 
     private Sprite _sprite = Sprite.Zero;
 

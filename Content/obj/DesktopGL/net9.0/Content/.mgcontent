@@ -9,6 +9,7 @@
     <File>c:/Users/Zack/CIS580/ZLGameProject/Content/Bob.png</File>
     <File>c:/Users/Zack/CIS580/ZLGameProject/Content/Bullet_Bounce.wav</File>
     <File>c:/Users/Zack/CIS580/ZLGameProject/Content/colored_packed.png</File>
+    <File>c:/Users/Zack/CIS580/ZLGameProject/Content/Dungeon Ruins Tileset Night.png</File>
     <File>c:/Users/Zack/CIS580/ZLGameProject/Content/font.spritefont</File>
     <File>c:/Users/Zack/CIS580/ZLGameProject/Content/Hit.wav</File>
     <File>c:/Users/Zack/CIS580/ZLGameProject/Content/Nicolaas Stulting - Revenge.mp3</File>
@@ -19,6 +20,7 @@
     <File>c:/Users/Zack/CIS580/ZLGameProject/Content/title.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
