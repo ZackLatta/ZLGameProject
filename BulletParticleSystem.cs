@@ -14,7 +14,7 @@ public class BulletParticleSystem: ParticleSystem
 
     private float _addParticle;
 
-    public BulletParticleSystem(Game game, IParticleEmitter emitter, BoundingBox b, PlayerSoul p) : base(game, 100, b, p)
+    public BulletParticleSystem(Game game, IParticleEmitter emitter, BoundingBox b, PlayerSoul p) : base(game,2)
     {
         _emitter = emitter;
 
@@ -31,7 +31,7 @@ public class BulletParticleSystem: ParticleSystem
         DrawOrder = AdditiveBlendDrawOrder;
     }
 
-    protected override void InitializeParticle(ref Particle p, Vector2 where)
+    protected override void InitializeParticle(ref CircleParticle p, Vector2 where)
     {
         Vector2 velocity;
         if(rand.Next(0,2) == 1)
@@ -51,7 +51,7 @@ public class BulletParticleSystem: ParticleSystem
         var scale = 0.25f;
 
         var lifetime = 15;
-        p.Center = new Vector2(32,32) * scale;
+        p.Circle.Center = new Vector2(32,32) * scale;
 
         p.Color = Color.Blue;
 

@@ -12,9 +12,18 @@ public abstract class Attack
 
     protected float _attackTime = 0;
 
+    protected float _attackDuration;
+
     public bool IsDone;
 
-    public List<Bullet> Bullets;
+    private List<ParticleSystem> _attackPattern;
+    private List<IParticleEmitter> _emitterObjects;
+
+    
+    public Attack(float attackDuration)
+    {
+        
+    }
 
     /// <summary>
     /// loads the bullets
@@ -22,10 +31,6 @@ public abstract class Attack
     /// <param name="content">content manager to load with</param>
     public virtual void LoadContent(ContentManager content)
     {
-        foreach(var b in Bullets)
-        {
-            b.LoadContent(content);
-        }
     }
 
    

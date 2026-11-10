@@ -10,39 +10,51 @@ using Microsoft.Xna.Framework.Audio;
 
 
 namespace ZLGameProject;
-
+public enum ScreenState
+{
+    Title,
+    StageSelect,
+    KitSelect1,
+    KitSelect2,
+    KitSelect3,
+    TurnBased1,
+    TurnBased2,
+    TurnBased3
+}
 public class GameProject : Game
 {
     private GraphicsDeviceManager _graphics;
     
+    private ScreenState _screen = ScreenState.StageSelect;
+
     private KeyboardState _keyboardState;
     private KeyboardState _prevKeyboardState;
     
     private SpriteBatch _spriteBatch;
     
-    private PlayerSoul _player;
-    private Bob _bob;
+    private Player _player1;
+    private Player _player2;
+    private Player _player3;
 
     private Texture2D _atlas;
 
     private SpriteFont _font;
-    private bool _showTitle = true;
 
-    private bool _playerTurn = true;
 
     private TitleScreen _title;
 
+    private StageSelectScreen _stageSelect;
+
+    private KitSelectScreen1 _kitSelect1;
+    private KitSelectScreen2 _kitSelect2;
+    private KitSelectScreen3 _kitSelect3;
+
+    private TurnBasedScreen1 _testTurnBased1;
+    private TurnBasedScreen2 _testTurnBased2;
+    private TurnBasedScreen3 _testTurnBased3;
+
     private BoundingBox _box;
 
-    private Song _titleSong;
-
-    private Song _battleSong;
-
-    private Song _currentSong;
-
-    private int _translationDirection = 1;
-
-    private float _currentTranslation = 0;
 
     private const float _translationAmount = 10;
 
@@ -64,11 +76,19 @@ public class GameProject : Game
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
-        _title = new TitleScreen(new Vector2(_graphics.PreferredBackBufferWidth / 2,  _graphics.PreferredBackBufferHeight / 2));
-        _player = new PlayerSoul(new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight * 0.5f));
-        _box = new BoundingBox(new Vector2(_graphics.PreferredBackBufferWidth / 2,  _graphics.PreferredBackBufferHeight / 2));
-        _bob = new Bob(_graphics.PreferredBackBufferWidth / 2);
-        _bob.Initialize(this, _box, _player);
+        _font = Content.Load<SpriteFont>("font");
+        _title = new TitleScreen(new Vector2(_graphics.PreferredBackBufferWidth / 2,  _graphics.PreferredBackBufferHeight / 2), _font);
+        _stageSelect = new StageSelectScreen(GraphicsDevice, new Vector2(_graphics.PreferredBackBufferWidth / 2,  _graphics.PreferredBackBufferHeight / 2), _font);
+        _kitSelect1 = new KitSelectScreen1(GraphicsDevice, new Vector2(_graphics.PreferredBackBufferWidth / 2,  _graphics.PreferredBackBufferHeight / 2), _font);
+        _kitSelect2 = new KitSelectScreen2(GraphicsDevice, new Vector2(_graphics.PreferredBackBufferWidth / 2,  _graphics.PreferredBackBufferHeight / 2), _font);
+        _kitSelect3 = new KitSelectScreen3(GraphicsDevice, new Vector2(_graphics.PreferredBackBufferWidth / 2,  _graphics.PreferredBackBufferHeight / 2), _font);
+        _player1 = new Player(GraphicsDevice, new Vector2(_graphics.PreferredBackBufferWidth / 2,  _graphics.PreferredBackBufferHeight / 2), _font);
+        _player2 = new Player(GraphicsDevice, new Vector2(_graphics.PreferredBackBufferWidth / 2,  _graphics.PreferredBackBufferHeight / 2), _font);
+        _player3 = new Player(GraphicsDevice, new Vector2(_graphics.PreferredBackBufferWidth / 2,  _graphics.PreferredBackBufferHeight / 2), _font);
+        _testTurnBased1 = new TurnBasedScreen1(GraphicsDevice, new Vector2(_graphics.PreferredBackBufferWidth / 2,  _graphics.PreferredBackBufferHeight / 2), _player1, _font);
+        _testTurnBased2 = new TurnBasedScreen2(GraphicsDevice, new Vector2(_graphics.PreferredBackBufferWidth / 2,  _graphics.PreferredBackBufferHeight / 2), _player2, _font);
+        _testTurnBased3 = new TurnBasedScreen3(GraphicsDevice, new Vector2(_graphics.PreferredBackBufferWidth / 2,  _graphics.PreferredBackBufferHeight / 2), _player3, _font);
+        
         base.Initialize();
     }
 
@@ -78,16 +98,14 @@ public class GameProject : Game
         
         // TODO: use this.Content to load your game content here
         _atlas = Content.Load<Texture2D>("colored_packed");
-        _font = Content.Load<SpriteFont>("font");
         _title.LoadContent(Content);
-        _player.LoadContent(Content);
-        _box.LoadContent(GraphicsDevice, _spriteBatch);
-        _bob.LoadContent(Content);
-        _titleSong = Content.Load<Song>("Nicolaas Stulting - Revenge");
-        _battleSong = Content.Load<Song>("Rhapsody - The Death of Privacy");
-        _currentSong = _titleSong;
-        MediaPlayer.Play(_currentSong);
-        MediaPlayer.IsRepeating = true;
+        _stageSelect.LoadContent(Content);
+        _kitSelect1.LoadContent(Content);
+        _kitSelect2.LoadContent(Content);
+        _kitSelect3.LoadContent(Content);
+        _testTurnBased1.LoadContent(Content);
+        _testTurnBased2.LoadContent(Content);
+        _testTurnBased3.LoadContent(Content);
     }
 
     protected override void Update(GameTime gameTime)
@@ -97,166 +115,120 @@ public class GameProject : Game
         
         _keyboardState = Keyboard.GetState();
 
-        // TODO: Add your update logic here
-        if (_keyboardState.IsKeyDown(Keys.Space))
+        ///Switch statement determines what screen is shown
+        switch (_screen)
         {
-            _showTitle = false;
-        }
-        if (_keyboardState.IsKeyDown(Keys.Q) && !_prevKeyboardState.IsKeyDown(Keys.Q))
-        {
-            QuickSave(_player, _bob);
-            _prevKeyboardState = _keyboardState;
-        }
-        if (_keyboardState.IsKeyDown(Keys.E) && !_prevKeyboardState.IsKeyDown(Keys.E))
-        {
-            QuickLoad();
-            _prevKeyboardState = _keyboardState;
-        }
-
-        if (!_showTitle)
-        {
- 
-            
-            if (!_player.IsDead)
-            {
-                //Changes the song when the screens change
-                if(_currentSong != _battleSong)
+            case ScreenState.Title:
+                _title.Update(gameTime);
+                break;
+            case ScreenState.StageSelect:
+                _stageSelect.Update(gameTime);
+                
+                switch (_stageSelect.StageSelected)
                 {
-                    //lowers song volume so the other sound effects can be heard
-                    MediaPlayer.Volume = 0.35f;
-                    _currentSong = _battleSong;
-                    MediaPlayer.Play(_currentSong);
+                    case StageSelected.Boss1:
+                        _screen = ScreenState.TurnBased1;
+                        break;
+                    case StageSelected.Boss2:
+                        _screen = ScreenState.TurnBased2;
+                        break;
+                    case StageSelected.Boss3:
+                        _screen = ScreenState.TurnBased3;
+                        break;
                 }
-                
-                
-                _bob.Update(gameTime, _box);
-                _player.Update(gameTime);
+                _stageSelect.StageSelected = StageSelected.None;
+                break;
+            case ScreenState.KitSelect1:
+                _kitSelect1.Update(gameTime);
+                if(_kitSelect1.ScreenProgression == ScreenProgression.Forward)
+                {
+                    _screen = ScreenState.TurnBased1;
+                }
+                else if(_kitSelect1.ScreenProgression == ScreenProgression.Backward)
+                {
+                    _screen = ScreenState.StageSelect;
+                    _kitSelect1.Clear();
                     
-                if (_bob.Turn)
-                {
-                    _player.CollideWithBoundingBox(_box);
-                    _bob.Attack1.CollideWithBullet(_player);
                 }
-                else
+                _kitSelect1.ScreenProgression = ScreenProgression.None;
+                break;
+            case ScreenState.KitSelect2:
+                _kitSelect2.Update(gameTime);
+                if(_kitSelect2.ScreenProgression == ScreenProgression.Forward)
                 {
-                    MediaPlayer.Stop();
+                    _screen = ScreenState.TurnBased2;
                 }
-                
-            }
-            else
-            {
-                MediaPlayer.Stop();
-            }
-            
+                else if(_kitSelect2.ScreenProgression == ScreenProgression.Backward)
+                {
+                    _screen = ScreenState.StageSelect;
+                    _kitSelect2.Clear();
+                    
+                }
+                _kitSelect2.ScreenProgression = ScreenProgression.None;
+                break;
+            case ScreenState.KitSelect3:
+                _kitSelect3.Update(gameTime);
+                if(_kitSelect3.ScreenProgression == ScreenProgression.Forward)
+                {
+                    _screen = ScreenState.TurnBased3;
+                }
+                else if(_kitSelect3.ScreenProgression == ScreenProgression.Backward)
+                {
+                    _screen = ScreenState.StageSelect;
+                    _kitSelect3.Clear();
+                    
+                }
+                _kitSelect3.ScreenProgression = ScreenProgression.None;
+                break;
+            case ScreenState.TurnBased1:
+                _testTurnBased1.Update(gameTime);
+                break;
+            case ScreenState.TurnBased2:
+                _testTurnBased2.Update(gameTime);
+                break;
+            case ScreenState.TurnBased3:
+                _testTurnBased3.Update(gameTime);
+                break;
         }
-        else
-        {
-            //Changes song if the screen changes
-            if(_currentSong != _titleSong)
-            {
-                _currentSong = _titleSong;
-                MediaPlayer.Play(_currentSong);
-            }
-            _title.Update(gameTime); 
-        }
-        
-
         base.Update(gameTime);
+        
     }
 
 
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
-
-        // TODO: Add your drawing code here
-        /* Translation code needs work
-        if(_bob.Attack1.AttackPhase1 == false)
+        _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+        switch (_screen)
         {
-            _currentTranslation += _translationAmount * _translationDirection;
-            if(_currentTranslation >= 300 || _currentTranslation <= -300)
-            {
-                _translationDirection *= -1;
-            }
-            
+            case ScreenState.Title:
+                _title.Draw(_spriteBatch);
+                break;
+            case ScreenState.StageSelect:
+                _stageSelect.Draw(_spriteBatch);
+                break;
+            case ScreenState.KitSelect1:
+                _kitSelect1.Draw(_spriteBatch);
+                break;
+            case ScreenState.KitSelect2:
+                _kitSelect2.Draw(_spriteBatch);
+                break;
+            case ScreenState.KitSelect3:
+                _kitSelect3.Draw(_spriteBatch);
+                break;
+            case ScreenState.TurnBased1:
+                _testTurnBased1.Draw(_spriteBatch, gameTime);
+                break;
+            case ScreenState.TurnBased2:
+            _testTurnBased2.Draw(_spriteBatch, gameTime);
+                break;
+            case ScreenState.TurnBased3:
+            _testTurnBased3.Draw(_spriteBatch, gameTime);
+                break;
         }
-
-        Matrix transform;
-        transform = Matrix.CreateTranslation(_currentTranslation , 0, 0);
-        if(_bob.Attack1.IsDone == true)
-        {
-            transform = Matrix.CreateTranslation(0 , 0, 0);
-        }
-        */
-        _spriteBatch.Begin(samplerState: SamplerState.PointWrap);
-        
-        
-        if(_showTitle == true)
-        {
-            
-        
-            //Draws instructions
-            _spriteBatch.DrawString(_font, $"Press Backspace or Esc to exit. \nPress space play", new Vector2(2,2), Color.White);
-        
-            //Draws title screen
-            _title.Draw(_spriteBatch);
-        }
-        else
-        {
-            //Draws instructions
-            _spriteBatch.DrawString(_font, $"Press Q to save position. \nPress E to load saved position (1 use per save)", new Vector2(2,2), Color.White);
-            
-            _spriteBatch.DrawString(_font, $"Health: {_player.Health}", new Vector2(_graphics.PreferredBackBufferWidth/2, 9 * _graphics.PreferredBackBufferHeight / 10), Color.White);
-            _box.Draw(gameTime);
-            _bob.Draw(gameTime, _spriteBatch);
-            if (!_player.IsDead)
-            {
-                _player.Draw(gameTime, _spriteBatch);
-            }
-            else
-            {
-                _spriteBatch.DrawString(_font, "You succumbed to the wrath of Bob >:)", _player.Position, Color.White);
-            }
-            if (!_bob.Turn && !_player.IsDead)
-            {
-                _spriteBatch.DrawString(_font, "You survived his fury :)", new Vector2(_graphics.PreferredBackBufferWidth/2, _graphics.PreferredBackBufferHeight/2), Color.White);
-            }
-            
-            
-        }
-        
-        
-        
         _spriteBatch.End();
 
         base.Draw(gameTime);
     }
 
-    public void QuickSave(PlayerSoul s, Bob b)
-    {
-        var options = new JsonSerializerOptions 
-        { 
-            IncludeFields = true,
-            WriteIndented = true 
-        };
-        string jsonFileName = "player.json";
-        string jsonserialize = JsonSerializer.Serialize(s.Position, options);
-        File.WriteAllText(jsonFileName, jsonserialize);
-        /*jsonFileName = "bob.json";
-        jsonserialize = JsonSerializer.Serialize(b);
-        File.WriteAllText(jsonFileName, jsonserialize);*/
-    }
-
-    public void QuickLoad()
-    {
-        var options = new JsonSerializerOptions 
-        { 
-            IncludeFields = true,
-            WriteIndented = true 
-        };
-        string jsonString = File.ReadAllText("player.json");
-        _player.Position = JsonSerializer.Deserialize<Vector2>(jsonString, options);
-
-        //_bob = JsonSerializer.Deserialize<Bob>("bob.json");
-    }
 }

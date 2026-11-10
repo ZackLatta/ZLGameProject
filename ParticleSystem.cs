@@ -9,15 +9,9 @@ namespace ZLGameProject;
 
 /// <summary>
 /// A class representing a generic particle system
-/// **PULLED FROM THE TUTORIAL FOR TESTING, REFACTOR LATER FOR FULL GAME IMPLEMENTATION**
 /// </summary>
 public abstract class ParticleSystem : DrawableGameComponent
 {
-    Random rand = new Random();
-
-    BoundingBox box;
-
-    PlayerSoul soul;
     #region Constants
 
     /// <summary>
@@ -59,7 +53,7 @@ public abstract class ParticleSystem : DrawableGameComponent
     /// <summary>
     /// The collection of particles 
     /// </summary>
-    Particle[] particles;
+    CircleParticle[] particles;
 
     /// <summary>
     /// A Queue containing indices of unused particles in the Particles array
@@ -107,18 +101,16 @@ public abstract class ParticleSystem : DrawableGameComponent
     /// Constructs a new instance of a particle system
     /// </summary>
     /// <param name="game"></param>
-    public ParticleSystem(Game game, int maxParticles, BoundingBox b, PlayerSoul p) : base(game) 
+    public ParticleSystem(Game game, int maxParticles) : base(game) 
     {
         // Create our particles
-        particles = new Particle[maxParticles];
+        particles = new CircleParticle[maxParticles];
         freeParticles = new Queue<int>(maxParticles);
         for (int i = 0; i < particles.Length; i++)
         {
             particles[i].Initialize(Vector2.Zero);
             freeParticles.Enqueue(i);
         }
-        box = b;
-        soul = p;
         // Run the InitializeConstants hook
         InitializeConstants();
     }
@@ -140,7 +132,7 @@ public abstract class ParticleSystem : DrawableGameComponent
     /// <param name="p">the particle to initialize</param>
     /// <param name="where">the position on the screen that the particle should be
     /// </param>
-    protected virtual void InitializeParticle(ref Particle p, Vector2 where)
+    protected virtual void InitializeParticle(ref CircleParticle p, Vector2 where)
     {
         // Initialize the particle with default values
         p.Initialize(where);
@@ -151,7 +143,7 @@ public abstract class ParticleSystem : DrawableGameComponent
     /// </summary>
     /// <param name="particle">The particle to update</param>
     /// <param name="dt">The elapsed time</param>
-    protected virtual void UpdateParticle(ref Particle particle, float dt)
+    protected virtual void UpdateParticle(ref CircleParticle particle, float dt)
     {
         // Update particle's linear motion values
         particle.Velocity += particle.Acceleration * dt;
@@ -163,8 +155,6 @@ public abstract class ParticleSystem : DrawableGameComponent
 
         // Update the time the particle has been alive 
         particle.TimeSinceStart += dt;
-        ParticleCollidesWithBoundingBox(ref particle, box);
-        ParticleCollidesWithSoul(ref particle, soul);
     }
 
     #endregion
@@ -243,7 +233,7 @@ public abstract class ParticleSystem : DrawableGameComponent
         // initializeConstants
         spriteBatch.Begin(blendState: blendState);
 
-        foreach (Particle p in particles)
+        foreach (CircleParticle p in particles)
         {
             // skip inactive particles
             if (!p.Active)
@@ -271,11 +261,10 @@ public abstract class ParticleSystem : DrawableGameComponent
     /// <param name="where">where the particle effect should be created</param>
     protected void AddParticles(Vector2 where)
     {
-        
         // the number of particles we want for this effect is a random number
         // somewhere between the two constants specified by the subclasses.
         int numParticles =
-            rand.Next(minNumParticles, maxNumParticles);
+            RandomHelper.Next(minNumParticles, maxNumParticles);
 
         // create that many particles, if you can.
         for (int i = 0; i < numParticles && freeParticles.Count > 0; i++)
@@ -298,85 +287,16 @@ public abstract class ParticleSystem : DrawableGameComponent
         // the number of particles we want for this effect is a random number
         // somewhere between the two constants specified by the subclasses.
         int numParticles =
-            rand.Next(minNumParticles, maxNumParticles);
+            RandomHelper.Next(minNumParticles, maxNumParticles);
 
         // create that many particles, if you can.
         for (int i = 0; i < numParticles && freeParticles.Count > 0; i++)
         {
             // grab a particle from the freeParticles queue, and Initialize it.
             int index = freeParticles.Dequeue();
-            InitializeParticle(ref particles[index], new Vector2(where.X + (float)rand.NextDouble() * where.Width, where.Y + (float)rand.NextDouble() * where.Height));
+            InitializeParticle(ref particles[index], RandomHelper.RandomPosition(where));
         }
     }
-
-    public void ParticleCollidesWithBoundingBox(ref Particle p, BoundingBox b)
-    {
-        
-
-        float nearestX = MathHelper.Clamp(p.Position.X, b.Left.X, b.Left.X + b.Left.Width);
-        float nearestY = MathHelper.Clamp(p.Position.Y, b.Left.Y, b.Left.Y + b.Left.Height);
-
-        
-        if(Math.Pow(p.Scale, 2) >= Math.Pow(p.Position.X - nearestX, 2) + Math.Pow(p.Position.Y - nearestY, 2))
-        {
-            p.Velocity.X *= -1; 
-            //_bounce.Play();
-        }
-
-        nearestX = MathHelper.Clamp(p.Position.X, b.Right.X, b.Right.X + b.Right.Width);
-        nearestY = MathHelper.Clamp(p.Position.Y, b.Right.Y, b.Right.Y + b.Right.Height);
-
-        
-        if(Math.Pow(p.Scale, 2) >= Math.Pow(p.Position.X - nearestX, 2) + Math.Pow(p.Position.Y - nearestY, 2))
-        {
-            p.Velocity.X *= -1; 
-            //_bounce.Play();
-        }
-
-        nearestX = MathHelper.Clamp(p.Position.X, b.Top.X, b.Top.X + b.Top.Width);
-        nearestY = MathHelper.Clamp(p.Position.Y, b.Top.Y, b.Top.Y + b.Top.Height);
-
-         
-        if(Math.Pow(p.Scale, 2) >= Math.Pow(p.Position.X - nearestX, 2) + Math.Pow(p.Position.Y - nearestY, 2))
-        {
-            p.Velocity.Y *= -1;
-            //_bounce.Play();
-        }
-
-        nearestX = MathHelper.Clamp(p.Position.X, b.Bottom.X, b.Bottom.X + b.Bottom.Width);
-        nearestY = MathHelper.Clamp(p.Position.Y, b.Bottom.Y, b.Bottom.Y + b.Bottom.Height);
-
-        
-        if(Math.Pow(p.Scale, 2) >= Math.Pow(p.Position.X - nearestX, 2) + Math.Pow(p.Position.Y - nearestY, 2))
-        {
-            p.Velocity.Y *= -1;
-            //_bounce.Play();  
-        }
-  
-    }
-
-    public void ParticleCollidesWithSoul(ref Particle par, PlayerSoul p)
-    {
-        if(!p.Invunerable && Math.Pow(p.Center.X * 0.75f + par.Center.X, 2)>= Math.Pow(p.Position.X - par.Position.X, 2) + Math.Pow(p.Position.Y- par.Position.Y, 2))
-        {
-            p.Health -= 1;
-            p.Invunerable = true;
-            if(p.Health <= 0)
-            {
-                //p.death.Play();
-            }
-            else
-            {
-                //p.hit.Play();
-            }
-
-            }
-    }
-        
-
-    
-
-
 
     #endregion
 
