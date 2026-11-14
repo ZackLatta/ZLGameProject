@@ -71,5 +71,123 @@ public class BoundingBox
         spriteBatch.Draw(_pixel, _bottomRectangle, Color.White);
     }
 
+    /// <summary>
+    /// Checks to see if there is a collision between the playersoul and the bounding box, and resolves accordingly depending on the state that the soul is in
+    /// </summary>
+    /// <param name="p">playersoul</param>
+    public void PlayerCollidesBoundingBox(PlayerSoul p)
+    {
+        if(p.SoulState == PlayerSoul.State.Normal)
+        {
+            if(CollisionHelper.Collides(Left, p.SoulBoundingCircle))
+            {
+                p.Position = new Vector2(Left.X + Left.Width + p.SoulBoundingCircle.Radius, p.Position.Y);
+                p.SoulBoundingCircle.Center = p.Position;
+                p.GroundTracking.X = p.Position.X - 8;
+                p.GroundTracking.Y = p.Position.Y + p.SoulBoundingCircle.Radius;
+            }
+
+            if(CollisionHelper.Collides(Right, p.SoulBoundingCircle))
+            {
+                p.Position = new Vector2(Right.X - p.SoulBoundingCircle.Radius, p.Position.Y);
+                p.SoulBoundingCircle.Center = p.Position;
+                p.GroundTracking.X = p.Position.X - 8;
+                p.GroundTracking.Y = p.Position.Y + p.SoulBoundingCircle.Radius;
+            }
+
+            if(CollisionHelper.Collides(Top, p.SoulBoundingCircle))
+            {
+                p.Position = new Vector2(p.Position.X, Top.Y + Top.Height + p.SoulBoundingCircle.Radius);
+                p.SoulBoundingCircle.Center = p.Position;
+                p.GroundTracking.X = p.Position.X - 8;
+                p.GroundTracking.Y = p.Position.Y + p.SoulBoundingCircle.Radius;
+            }
+            if(CollisionHelper.Collides(Bottom, p.SoulBoundingCircle))
+            {
+                p.Position = new Vector2(p.Position.X, Bottom.Y - p.SoulBoundingCircle.Radius);
+                p.SoulBoundingCircle.Center = p.Position;
+                p.GroundTracking.X = p.Position.X - 8;
+                p.GroundTracking.Y = p.Position.Y + p.SoulBoundingCircle.Radius;
+            }
+        }
+        else if(p.SoulState == PlayerSoul.State.Orange)
+        {
+            if(CollisionHelper.Collides(Left, p.SoulBoundingCircle))
+            {
+                ///REMINDER: the X and Y of a rectangle is the location of the top leftmost pixel
+                p.Position = new Vector2(Left.X + Left.Width + p.SoulBoundingCircle.Radius, p.Position.Y);
+                p.SoulBoundingCircle.Center = p.Position;
+                p.GroundTracking.X = p.Position.X - 8;
+                p.GroundTracking.Y = p.Position.Y + p.SoulBoundingCircle.Radius;
+                p.Velocity = new Vector2(0,p.Velocity.Y);
+            }
+
+            if(CollisionHelper.Collides(Right, p.SoulBoundingCircle))
+            {
+                p.Position = new Vector2(Right.X - p.SoulBoundingCircle.Radius, p.Position.Y);
+                p.SoulBoundingCircle.Center = p.Position;
+                p.GroundTracking.X = p.Position.X - 8;
+                p.GroundTracking.Y = p.Position.Y + p.SoulBoundingCircle.Radius;
+                p.Velocity = new Vector2(0,p.Velocity.Y);
+            }
+
+            if(CollisionHelper.Collides(Top, p.SoulBoundingCircle))
+            {
+                p.Position = new Vector2(p.Position.X, Top.Y + Top.Height + p.SoulBoundingCircle.Radius);
+                p.SoulBoundingCircle.Center = p.Position;
+                p.GroundTracking.X = p.Position.X - 8;
+                p.GroundTracking.Y = p.Position.Y + p.SoulBoundingCircle.Radius;
+                p.Velocity = new Vector2(p.Velocity.X,0);
+            }
+            if(CollisionHelper.Collides(Bottom, p.SoulBoundingCircle))
+            {
+                p.Position = new Vector2(p.Position.X, Bottom.Y - p.SoulBoundingCircle.Radius);
+                p.SoulBoundingCircle.Center = p.Position;
+                p.GroundTracking.X = p.Position.X - 8;
+                p.GroundTracking.Y = p.Position.Y + p.SoulBoundingCircle.Radius;
+                p.Velocity = new Vector2(p.Velocity.X,0);
+            }
+        }
+        else if(p.SoulState == PlayerSoul.State.Blue)
+        {
+            if(CollisionHelper.Collides(Left, p.SoulBoundingCircle))
+            {
+                p.Position = new Vector2(Left.X + Left.Width + p.SoulBoundingCircle.Radius, p.Position.Y);
+                p.SoulBoundingCircle.Center = p.Position;
+                p.GroundTracking.X = p.Position.X - 8;
+                p.GroundTracking.Y = p.Position.Y + p.SoulBoundingCircle.Radius;
+            }
+
+            if(CollisionHelper.Collides(Right, p.SoulBoundingCircle))
+            {
+                p.Position = new Vector2(Right.X - p.SoulBoundingCircle.Radius, p.Position.Y);
+                p.SoulBoundingCircle.Center = p.Position;
+                p.GroundTracking.X = p.Position.X - 8;
+                p.GroundTracking.Y = p.Position.Y + p.SoulBoundingCircle.Radius;
+            }
+
+            if(CollisionHelper.Collides(Top, p.SoulBoundingCircle))
+            {
+                p.Position = new Vector2(p.Position.X, Top.Y + Top.Height + p.SoulBoundingCircle.Radius);
+                p.SoulBoundingCircle.Center = p.Position;
+                p.GroundTracking.X = p.Position.X - 8;
+                p.GroundTracking.Y = p.Position.Y + p.SoulBoundingCircle.Radius;
+                p.Velocity.Y = 0;
+                p.ReflectedInitialVelocity.Y = 0;
+                p.Velocity = new Vector2(p.Velocity.X,0);
+            }
+            if(CollisionHelper.Collides(Bottom, p.GroundTracking))
+            {
+                p.Position = new Vector2(p.Position.X, Bottom.Y - p.SoulBoundingCircle.Radius);
+                p.SoulBoundingCircle.Center = p.Position;
+                p.GroundTracking.X = p.Position.X - 8;
+                p.GroundTracking.Y = p.Position.Y + p.SoulBoundingCircle.Radius;
+                p.JumpState = PlayerSoul.BlueState.Grounded;
+            }
+        }
+
+
+    }
+
     
     }

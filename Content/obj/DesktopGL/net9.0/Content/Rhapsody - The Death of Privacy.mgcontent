@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/Zack/CIS580/ZLGameProject/Content/Rhapsody - The Death of Privacy.mp3</SourceFile>
+  <SourceFile>c:/Users/Zack/CIS580/ZLGameProject/Content/Rhapsody - The Death of Privacy.mp3</SourceFile>
   <SourceTime>2026-10-02T00:44:37.170135-05:00</SourceTime>
-  <DestFile>C:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/Rhapsody - The Death of Privacy.xnb</DestFile>
-  <DestTime>2026-11-10T05:52:39.491045-06:00</DestTime>
+  <DestFile>c:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/Rhapsody - The Death of Privacy.xnb</DestFile>
+  <DestTime>2026-11-11T23:08:58.625407-06:00</DestTime>
   <Importer>Mp3Importer</Importer>
   <ImporterTime>2026-08-14T16:50:10-05:00</ImporterTime>
   <Processor>SongProcessor</Processor>
@@ -19,6 +19,6 @@
   <Dependencies />
   <BuildAsset />
   <BuildOutput>
-    <string>C:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/Rhapsody - The Death of Privacy.ogg</string>
+    <string>c:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/Rhapsody - The Death of Privacy.ogg</string>
   </BuildOutput>
 </PipelineBuildEvent>

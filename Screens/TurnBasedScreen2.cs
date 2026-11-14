@@ -25,8 +25,7 @@ public class TurnBasedScreen2 : TurnBasedScreen
     public override void LoadContent(ContentManager content)
     {
         base.LoadContent(content);
-        Enemy._testAttack.bullets = new List<TempBullet>(){new TempRectBullet(_pixel, false, new Vector2(_center.X - 200, _center.Y+160), 300, 100, new(10,0), 5),
-                                                           new TempRectBullet(_pixel, false, new Vector2(_center.X - 150, _center.Y+110), 100,50, new(10,0), 5)};
+        Enemy._testAttack.bullets = new List<TempBullet>(){new TempRectBullet(_pixel, false, new Vector2(_center.X, _center.Y+160), 100, 100, new(0,0), 5)};
         _player.Soul.SetMovement(PlayerSoul.State.Blue);
         _player.Soul.Position = new Vector2(_center.X + 200, _center.Y- 50);
         _player.Soul.HasSword = true; 

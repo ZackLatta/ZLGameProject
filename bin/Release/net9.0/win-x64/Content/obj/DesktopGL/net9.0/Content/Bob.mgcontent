@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/Zack/CIS580/ZLGameProject/Content/Bob.png</SourceFile>
+  <SourceFile>c:/Users/Zack/CIS580/ZLGameProject/bin/Release/net9.0/win-x64/Content/Bob.png</SourceFile>
   <SourceTime>2026-09-18T19:48:26.632085-05:00</SourceTime>
-  <DestFile>C:/Users/Zack/CIS580/ZLGameProject/Content/bin/DesktopGL/Content/Bob.xnb</DestFile>
-  <DestTime>2026-11-10T05:52:30.91855-06:00</DestTime>
+  <DestFile>c:/Users/Zack/CIS580/ZLGameProject/bin/Release/net9.0/win-x64/Content/bin/DesktopGL/Content/Bob.xnb</DestFile>
+  <DestTime>2026-11-11T23:08:35.0048469-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2026-08-14T16:50:10-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

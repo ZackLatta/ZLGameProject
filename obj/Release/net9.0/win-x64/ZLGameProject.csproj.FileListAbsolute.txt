@@ -14,56 +14,14 @@ C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\Rhapsody -
 C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\Select.xnb
 C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\Temp_Death.xnb
 C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\title.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\32x32-bat-sprite.png
 C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\Ball.png
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\32x32-bat-sprite.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\colored_packed.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\Content\32x32-bat-sprite.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\Content\Ball.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\Content\Bob.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\Content\Bullet_Bounce.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\Content\colored_packed.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\Content\Dungeon Ruins Tileset Night.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\Content\font.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\Content\Hit.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\Content\Nicolaas Stulting - Revenge.ogg
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\Content\Nicolaas Stulting - Revenge.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\Content\PlayerSoul.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\Content\Rhapsody - The Death of Privacy.ogg
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\Content\Rhapsody - The Death of Privacy.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\Content\Select.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\Content\Temp_Death.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\Content\title.xnb
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\bin\DesktopGL\font.xnb
 C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\Bob.png
 C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\Bullet_Bounce.wav
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\colored_packed.png
 C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\Content.mgcb
 C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\Dungeon Ruins Tileset Night.png
 C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\font.spritefont
 C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\Hit.wav
 C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\Nicolaas Stulting - Revenge.mp3
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\.mgstats
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\32x32-bat-sprite.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\colored_packed.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\font.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\net9.0\Content\.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\net9.0\Content\.mgstats
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\net9.0\Content\32x32-bat-sprite.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\net9.0\Content\Ball.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\net9.0\Content\Bob.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\net9.0\Content\Bullet_Bounce.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\net9.0\Content\colored_packed.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\net9.0\Content\Dungeon Ruins Tileset Night.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\net9.0\Content\font.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\net9.0\Content\Hit.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\net9.0\Content\Nicolaas Stulting - Revenge.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\net9.0\Content\PlayerSoul.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\net9.0\Content\Rhapsody - The Death of Privacy.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\net9.0\Content\Select.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\net9.0\Content\Temp_Death.mgcontent
-C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\obj\DesktopGL\net9.0\Content\title.mgcontent
 C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\PlayerSoul.png
 C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\Rhapsody - The Death of Privacy.mp3
 C:\Users\Zack\CIS580\ZLGameProject\bin\Release\net9.0\win-x64\Content\Select.wav

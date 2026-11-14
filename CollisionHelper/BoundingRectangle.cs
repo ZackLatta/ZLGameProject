@@ -9,7 +9,7 @@ namespace ZLGameProject;
 
 ///
 /// A struct representing BoundingRectangle
-/// 
+///
 public struct BoundingRectangle
 {
     public float X;

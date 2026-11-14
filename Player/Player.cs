@@ -132,7 +132,7 @@ public class Player
     /// <summary>
     /// Attack power of the player, starts at 10
     /// </summary>
-    private int _attackPower = 50;
+    private int _attackPower = 10;
     private Button _attackButton;
 
     private Button _itemButton;
@@ -318,4 +318,5 @@ public class Player
             }
         }
     }
+
 }

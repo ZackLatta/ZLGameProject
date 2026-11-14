@@ -25,6 +25,8 @@ public class TempRectBullet : TempBullet
 
     public Vector2 WidthHeight;
 
+    public bool WasHit;
+
 
     public TempRectBullet(Texture2D pixel, bool breakable, Vector2 position, int width, int height, Vector2 velocity, int damage) : base(pixel, breakable, damage)
     {
@@ -42,36 +44,20 @@ public class TempRectBullet : TempBullet
         Position += Velocity;
         HitBox.X = Position.X;
         HitBox.Y = Position.Y;
-        if(p.Soul.HasSwung)
+        if(p.Soul.HasSwung && !WasHit)
         {
             if(CollisionHelper.Collides(HitBox, p.Soul.SwordHitCircle))
             {
-                if(p.Soul.Facing == PlayerSoul.Direction.Left)
-                {
-                    p.Soul.ReflectedInitialVelocity += new Vector2(5, 0);
-                }
-                if(p.Soul.Facing == PlayerSoul.Direction.Right)
-                {
-                    p.Soul.ReflectedInitialVelocity += new Vector2(-5, 0);
-                }
-                if(p.Soul.Facing == PlayerSoul.Direction.Up)
-                {
-                    p.Soul.ReflectedInitialVelocity += new Vector2(0, 5);
-                }
-                if(p.Soul.Facing == PlayerSoul.Direction.Down)
-                {
-                    if(p.Soul.SoulState == PlayerSoul.State.Blue && p.Soul.JumpState == PlayerSoul.BlueState.Falling)
-                    {
-                        p.Soul.ReflectedInitialVelocity += new Vector2(0,-8);
-                    }
-                    else
-                    {
-                        p.Soul.ReflectedInitialVelocity += new Vector2(0, -5);
-                    }
-                    
-                    
-                }
+                p.Soul.AddReflectVelocity(5);
+                WasHit = true;
+
             }
+
+        }
+
+        if (!p.Soul.OnCoolDown)
+        {
+            WasHit = false;
         }
 
         if(!p.Invunerable && CollisionHelper.Collides(HitBox, p.Soul.SoulBoundingCircle))

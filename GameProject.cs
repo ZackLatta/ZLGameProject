@@ -26,6 +26,9 @@ public class GameProject : Game
     private GraphicsDeviceManager _graphics;
     
     private ScreenState _screen = ScreenState.StageSelect;
+    
+    //triangle to draw
+    private Triangle triangle;
 
     private KeyboardState _keyboardState;
     private KeyboardState _prevKeyboardState;
@@ -76,6 +79,7 @@ public class GameProject : Game
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
+        triangle = new Triangle(this);
         _font = Content.Load<SpriteFont>("font");
         _title = new TitleScreen(new Vector2(_graphics.PreferredBackBufferWidth / 2,  _graphics.PreferredBackBufferHeight / 2), _font);
         _stageSelect = new StageSelectScreen(GraphicsDevice, new Vector2(_graphics.PreferredBackBufferWidth / 2,  _graphics.PreferredBackBufferHeight / 2), _font);
@@ -97,7 +101,6 @@ public class GameProject : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         
         // TODO: use this.Content to load your game content here
-        _atlas = Content.Load<Texture2D>("colored_packed");
         _title.LoadContent(Content);
         _stageSelect.LoadContent(Content);
         _kitSelect1.LoadContent(Content);
@@ -197,6 +200,7 @@ public class GameProject : Game
 
     protected override void Draw(GameTime gameTime)
     {
+
         GraphicsDevice.Clear(Color.Black);
         _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
         switch (_screen)
@@ -226,6 +230,8 @@ public class GameProject : Game
             _testTurnBased3.Draw(_spriteBatch, gameTime);
                 break;
         }
+
+        triangle.Draw();
         _spriteBatch.End();
 
         base.Draw(gameTime);

@@ -144,7 +144,7 @@ public class PlayerSoul
     /// <summary>
     /// rate of decay of the reflected velocitye
     /// </summary>
-    private float _reflectedAccelerationDecay = 4;
+    private float _reflectedAccelerationDecay = 4f;
 
     /// <summary>
     /// Determins if the sword is on cooldown
@@ -157,9 +157,9 @@ public class PlayerSoul
     private float _swordCoolDown = 0;
 
     /// <summary>
-    /// cool down for the sword (base: 0.5 secs)
+    /// cool down for the sword (base: 0.4 secs)
     /// </summary>
-    private float _swordCoolDownThreshold = 0.5f;
+    private float _swordCoolDownThreshold = 0.4f;
 
     /// <summary>
     /// direction the sword is facing (defualt: left)
@@ -207,8 +207,8 @@ public class PlayerSoul
     {
         _texture = content.Load<Texture2D>("PlayerSoul");
         SoulBoundingCircle = new BoundingCircle(Position, 24f);
-        SwordHitCircle = new BoundingCircle(new Vector2(Position.X - 12f, Position.Y), 36f);
-        GroundTracking = new BoundingRectangle(Position.X - 8, Position.Y + SoulBoundingCircle.Radius, 16f, 5f);
+        SwordHitCircle = new BoundingCircle(new Vector2(Position.X - 12f, Position.Y), 48f);
+        GroundTracking = new BoundingRectangle(Position.X - 8, Position.Y + SoulBoundingCircle.Radius, 16f, 2f);
         Facing = Direction.Left;
         Velocity = new Vector2(5,5);
         Acceleration = new Vector2(5,5);
@@ -306,11 +306,6 @@ public class PlayerSoul
                 break;
 
             case State.Blue:
-                /// resets Velocity if the player has just landed
-                if(JumpState == BlueState.Grounded && Velocity.Y != _initialTakeOffVelocity)
-                {
-                    Velocity.Y = _initialTakeOffVelocity;
-                }
 
                 if(!_keyboardState.IsKeyDown(Keys.W) && JumpState == BlueState.Jumping)
                 {
@@ -321,11 +316,13 @@ public class PlayerSoul
 
                 if(JumpState == BlueState.Falling)
                 {
+
                     ///caps fall speed
                     if(Velocity.Y > -6)
                     {
                         Velocity.Y -= _jumpAccelerationDecay * t;
                     }
+                        
                     Position.Y -= Velocity.Y;
                     
                 }
@@ -334,6 +331,7 @@ public class PlayerSoul
                 {
                     if(JumpState == BlueState.Grounded)
                     {
+                        Velocity.Y = _initialTakeOffVelocity;
                         Position.Y -= Velocity.Y;
                         JumpState = BlueState.Jumping;
                     }
@@ -371,7 +369,7 @@ public class PlayerSoul
                 break;
         }
         
-        Position += ReflectedInitialVelocity;
+        
 
         ///Reflected velocity will always be acted on in this instance, but currently do not have a better way
         if (HasSword)
@@ -384,14 +382,17 @@ public class PlayerSoul
             {
                 ReflectedInitialVelocity.X -=_reflectedAccelerationDecay * t;
             }
-            if(ReflectedInitialVelocity.Y < 0)
+            /// prevents two instances of gravity acting on the soul at the same time
+            if(SoulState != State.Blue && ReflectedInitialVelocity.Y < 0)
             {
                 ReflectedInitialVelocity.Y +=_reflectedAccelerationDecay * t;
             }
-            if(ReflectedInitialVelocity.Y > 0)
+            if(SoulState != State.Blue && ReflectedInitialVelocity.Y > 0)
             {
                 ReflectedInitialVelocity.Y -=_reflectedAccelerationDecay * t;
             }
+            Position += ReflectedInitialVelocity;
+
         }
 
         ///resets if the velocity gets too low
@@ -521,6 +522,61 @@ public class PlayerSoul
         else if (SoulState == State.Blue)
         {
             Velocity = new Vector2(_normalVelocity.X, _initialTakeOffVelocity);
+        }
+    }
+
+    /// <summary>
+    /// checks if the player is touching the ground the ground
+    /// </summary>
+    /// <param name="r">the player ground tracking rectangle</param>
+    /// <param name="r2">the platform</param>
+    /// <returns>true if so, false if not</returns>
+    public bool CheckIfGrounded(BoundingRectangle r, BoundingRectangle r2)
+    {
+        return CollisionHelper.Collides(r,r2);
+    }
+
+    /// <summary>
+    /// Sets the reflect velocity vector
+    /// </summary>
+    /// <param name="v">velocity being addad</param>
+    public void AddReflectVelocity(float v)
+    {
+        if (Facing == Direction.Left)
+        {
+            ReflectedInitialVelocity.X = v;
+        }
+        if (Facing == Direction.Right)
+        {
+            ReflectedInitialVelocity.X = -v;
+        }
+        if (Facing == Direction.Up)
+        {   
+            ///added to normal velocity so there is not two instances of gravity on the same object
+            if (SoulState == State.Blue)
+            {
+                Velocity.Y = v;
+            }
+            else
+            {
+                ReflectedInitialVelocity.Y = v;
+            }
+            
+        }
+        if (Facing == Direction.Down)
+        {
+            if (SoulState == State.Blue)
+            {
+                Velocity.Y = v;
+                if(JumpState == BlueState.Grounded)
+                {
+                    JumpState = BlueState.Falling;
+                }
+            }
+            else
+            {
+                ReflectedInitialVelocity.Y = -v;
+            }
         }
     }
 }

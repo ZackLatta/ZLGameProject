@@ -32,6 +32,7 @@ public class TestAttack : TempAttack
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+
         foreach(TempRectBullet bullet in bullets)
         {
             bullet.Update(gameTime, _player);
@@ -52,6 +53,7 @@ public class TestAttack : TempAttack
                 bullet.Velocity.Y *= -1;
             }
         }
+
 
  
     }

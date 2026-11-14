@@ -78,7 +78,7 @@ public  class Enemy
         _screenCenter = c;
         _player = p;
         _spritePosition = new Vector2(_screenCenter.X, _screenCenter.Y/2 - 50);
-        _testAttack = new TestAttack(15f,_pixel, p, c);
+        _testAttack = new TestAttack(30f,_pixel, p, c);
         _maxHealth = 100;
         _healthBar = new Bar(pixel, new Vector2(_spritePosition.X+100, _spritePosition.Y),_maxHealth,Color.Yellow, Color.DarkOrange);
         Health = _maxHealth;
